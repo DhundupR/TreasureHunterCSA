@@ -40,9 +40,9 @@ public class TreasureHunter {
      * Creates a hunter object at the beginning of the game and populates the class member variable with it.
      */
     private void welcomePlayer() {
-        System.out.println("Welcome to TREASURE HUNTER!");
-        System.out.println("Going hunting for the big treasure, eh?");
-        System.out.print("What's your name, Hunter? ");
+        System.out.println(Colors.CYAN + "Welcome to TREASURE HUNTER!");
+        System.out.println("Going hunting for the"+ Colors.YELLOW+ " big treasure, "+ Colors.CYAN +"eh?");
+        System.out.print("What's your name, Hunter? " + Colors.RESET);
         String name = SCANNER.nextLine().toLowerCase();
 
         // set hunter instance variable
@@ -100,11 +100,11 @@ public class TreasureHunter {
             System.out.println("***");
             System.out.println(hunter);
             System.out.println(currentTown);
-            System.out.println("(B)uy something at the shop.");
+            System.out.println(Colors.PURPLE + "(B)uy something at the shop.");
             System.out.println("(S)ell something at the shop.");
             System.out.println("(M)ove on to a different town.");
             System.out.println("(L)ook for trouble!");
-            System.out.println("Give up the hunt and e(X)it.");
+            System.out.println("Give up the hunt and e(X)it." + Colors.RESET);
             System.out.println();
             System.out.print("What's your next move? ");
             choice = SCANNER.nextLine().toLowerCase();
