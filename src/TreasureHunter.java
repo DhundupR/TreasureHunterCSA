@@ -54,7 +54,7 @@ public class TreasureHunter {
             hardMode = true;
         }
         else if(hard.equals("test")){
-            hunter.changeGold(95);
+            hunter.changeGold(96);
             hunter.buyItem("water",1);
             hunter.buyItem("rope",1);
             hunter.buyItem("machete",1);
@@ -104,8 +104,13 @@ public class TreasureHunter {
         String choice = "";
 
         while (!choice.equals("x")) {
+
             System.out.println();
             System.out.println(currentTown.getLatestNews());
+            if (hunter.getGold() < 0) {
+                System.out.println("GAME OVER");
+                break;
+            }
             System.out.println("***");
             System.out.println(hunter);
             System.out.println(currentTown);

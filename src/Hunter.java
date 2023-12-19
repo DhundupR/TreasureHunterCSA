@@ -10,6 +10,11 @@ public class Hunter {
     private String[] kit;
     private int gold;
 
+    public int getGold(){
+        return gold;
+    }
+
+
     /**
      * The base constructor of a Hunter assigns the name to the hunter and an empty kit.
      *
