@@ -87,6 +87,7 @@ public class Shop {
         str += "Machete: " + MACHETE_COST + " gold\n";
         str += "Horse: " + HORSE_COST + " gold\n";
         str += "Boat: " + BOAT_COST + " gold\n";
+        str += "Boots"
 
         return str;
     }
