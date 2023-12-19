@@ -54,7 +54,7 @@ public class TreasureHunter {
             hardMode = true;
         }
         else if(hard.equals("test")){
-            hunter.changeGold(7);
+            hunter.changeGold(0);
             hunter.buyItem("water",1);
             hunter.buyItem("rope",1);
             hunter.buyItem("machete",1);
