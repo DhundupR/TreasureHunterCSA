@@ -66,11 +66,24 @@ public class Town {
             printMessage = "You used your " + item + " to cross the " + terrain.getTerrainName() + ".";
             if (checkItemBreak()) {
                 hunter.removeItemFromKit(item);
-                printMessage += "\nUnfortunately, your " + item + " broke.";
+                if (item.equals("horse")) {
+                    printMessage += Colors.RED + "\nUnfortunately, your " + item + " decided to fire you." + Colors.RESET;
+                } else if (item.equals("water")) {
+                    printMessage += Colors.RED + "\nUnfortunately, you ran out of " + item + "." + Colors.RESET;
+                } else if (item.equals("boots")) {
+                    printMessage += Colors.RED + "\nUnfortunately, your " + item + " fell apart." + Colors.RESET;
+                } else if (item.equals("rope")) {
+                    printMessage += Colors.RED + "\nUnfortunately, your " + item + " ripped in half." + Colors.RESET;
+                } else if (item.equals("boat")) {
+                    printMessage += Colors.RED + "\nUnfortunately, your " + item + " has a leakage." + Colors.RESET;
+                } else {
+                    printMessage += Colors.RED + "\nUnfortunately, your " + item + " broke." + Colors.RESET;
+                }
             }
 
             return true;
         }
+
 
         printMessage = "You can't leave town, " + hunter.getHunterName() + ". You don't have a " + terrain.getNeededItem() + ".";
         return false;
@@ -83,6 +96,7 @@ public class Town {
      */
     public void enterShop(String choice) {
         shop.enter(hunter, choice);
+        printMessage = "You left the shop";
     }
 
     /**
@@ -128,7 +142,7 @@ public class Town {
      * @return A Terrain object.
      */
     private Terrain getNewTerrain() {
-        int rnd = (int)Math.random()*12+1;
+        int rnd = (int)(Math.random()*14)+1;
         if (rnd < 2) {
             return new Terrain("Mountains", "Rope");
         } else if (rnd < 4) {
