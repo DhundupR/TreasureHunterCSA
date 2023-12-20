@@ -44,12 +44,12 @@ public class TreasureHunter {
      */
 
     public void randItem(){
-        double x =  Math.random();
-        if ( x < 10){
+        double x =  (int)(Math.random()*100)+1;
+        if ( x < 20){
             item = "Crown";
-        }else if ( x < 30){
+        }else if ( x < 40){
             item = "Trophy";
-        }else if ( x < 50){
+        }else if ( x < 60){
             item = "Gem";
         }else {
             item = "Dust";
@@ -103,7 +103,7 @@ public class TreasureHunter {
         double toughness = 0.4;
         if (hardMode) {
             // in hard mode, you get less money back when you sell items
-            markdown = 0.5;
+            markdown = 0.25;
 
             // and the town is "tougher"
             toughness = 0.75;
