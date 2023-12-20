@@ -99,7 +99,7 @@ public class TreasureHunter {
     private void enterTown() {
         searched = false;
         randItem();
-        double markdown = 0.25;
+        double markdown = 0.5;
         double toughness = 0.4;
         if (hardMode) {
             // in hard mode, you get less money back when you sell items
