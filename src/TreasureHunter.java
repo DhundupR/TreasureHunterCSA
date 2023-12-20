@@ -17,19 +17,47 @@ public class TreasureHunter {
     private Hunter hunter;
     private boolean hardMode;
 
+    private String item;
+
+    private boolean getItem;
+
+    private boolean searched;
+
+    private String[] treasureList;
+
     /**
      * Constructs the Treasure Hunter game.
      */
     public TreasureHunter() {
         // these will be initialized in the play method
+        treasureList = new String[4];
         currentTown = null;
         hunter = null;
         hardMode = true;
+        randItem();
+        getItem = false;
+        searched = false;
     }
 
     /**
      * Starts the game; this is the only public method
      */
+
+    public void randItem(){
+        double x =  Math.random();
+        if ( x < 10){
+            item = "Crown";
+        }else if ( x < 30){
+            item = "Trophy";
+        }else if ( x < 50){
+            item = "Gem";
+        }else {
+            item = "Dust";
+        }
+    }
+
+
+
     public void play() {
         welcomePlayer();
         enterTown();
@@ -54,7 +82,7 @@ public class TreasureHunter {
             hardMode = true;
         }
         else if(hard.equals("test")){
-            hunter.changeGold(0);
+            hunter.changeGold(96);
             hunter.buyItem("water",1);
             hunter.buyItem("rope",1);
             hunter.buyItem("machete",1);
@@ -69,6 +97,8 @@ public class TreasureHunter {
      * Creates a new town and adds the Hunter to it.
      */
     private void enterTown() {
+        searched = false;
+        randItem();
         double markdown = 0.25;
         double toughness = 0.4;
         if (hardMode) {
@@ -119,6 +149,7 @@ public class TreasureHunter {
             System.out.println("(S)ell something at the shop.");
             System.out.println("(M)ove on to a different town.");
             System.out.println("(L)ook for trouble!");
+            System.out.println("(H)unt for treasure!");
             System.out.println("Give up the hunt and e(X)it." + Colors.RESET);
             System.out.println();
             System.out.print("What's your next move? ");
@@ -144,8 +175,54 @@ public class TreasureHunter {
             currentTown.lookForTrouble();
         } else if (choice.equals("x")) {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
+        } else if (choice.equals("h"))  {
+
+            getItem = checkItems(item);
+            if (searched == true){
+                System.out.println("You have already searched for treasure!");
+            }
+            else if (getItem == true){
+                System.out.println("You already found this item previously");
+            } else if( item.equals("dust")){
+                System.out.println("Your found useless dust!");
+            } else{
+                System.out.println("You found " + item);
+                addItem(item);
+
+
+            }
+            searched = true;
+
+
+
         } else {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
+    }
+
+    public boolean checkItems(String x){
+        for (int i = 0; i < treasureList.length; i ++){
+            if (x.equals(treasureList[i])){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private int emptyPositionInTreasurelist() {
+        for (int i = 0; i < treasureList.length; i++) {
+            if (treasureList[i] == null) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private void addItem(String item) {
+
+        int idx = emptyPositionInTreasurelist();
+        treasureList[idx] = item;
+
     }
 }
