@@ -66,6 +66,9 @@ public class Town {
             printMessage = "You used your " + item + " to cross the " + terrain.getTerrainName() + ".";
             if (checkItemBreak()) {
                 hunter.removeItemFromKit(item);
+                if (item .equals("horse")){
+                    printMessage += "\nUnfortunately, your " + item + " decided to fire you.";
+                }
                 printMessage += "\nUnfortunately, your " + item + " broke.";
             }
 
