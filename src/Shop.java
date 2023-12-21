@@ -14,12 +14,15 @@ public class Shop {
     private static final int HORSE_COST = 12;
     private static final int BOAT_COST = 20;
     private static final int BOOTS_COST = 20100;
+    private static final int SWORD_COST = 0;
+
 
     // static variables
     private static final Scanner SCANNER = new Scanner(System.in);
 
     // instance variables
     private double markdown;
+    private String mode;
     private Hunter customer;
 
     /**
@@ -27,8 +30,9 @@ public class Shop {
      *
      * @param markdown Percentage of markdown for selling items in decimal format.
      */
-    public Shop(double markdown) {
+    public Shop(double markdown, String mode) {
         this.markdown = markdown;
+        this.mode=mode;
         customer = null; // is set in the enter method
     }
 
@@ -89,6 +93,9 @@ public class Shop {
         str += "Horse: " + HORSE_COST + " gold\n";
         str += "Boat: " + BOAT_COST + " gold\n";
         str += "Boots: " + BOOTS_COST +" gold\n";
+        if(mode.equals("s")){
+            str += "Sword: " + SWORD_COST +" gold\n";
+        }
 
         return str;
     }
@@ -155,6 +162,8 @@ public class Shop {
             return BOAT_COST;
         } else if (item.equals("boots")) {
             return BOOTS_COST;
+        } else if (item.equals("sword")) {
+            return SWORD_COST;
         }else {
             return 0;
         }

@@ -15,7 +15,7 @@ public class TreasureHunter {
     // instance variables
     private Town currentTown;
     private Hunter hunter;
-    private boolean hardMode;
+    private String mode;
 
     private String item;
 
@@ -33,11 +33,16 @@ public class TreasureHunter {
         treasureList = new String[4];
         currentTown = null;
         hunter = null;
-        hardMode = true;
+        mode = null;
         randItem();
         getItem = false;
         searched = false;
+
     }
+    public void setMode(String newMode){
+        mode=newMode;
+    }
+
 
     /**
      * Starts the game; this is the only public method
@@ -74,15 +79,19 @@ public class TreasureHunter {
         String name = SCANNER.nextLine().toLowerCase();
 
         // set hunter instance variable
-        hunter = new Hunter(name, 10);
 
-        System.out.print("Hard mode? (y/n): ");
-        String hard = SCANNER.nextLine().toLowerCase();
-        if (hard.equals("y")) {
-            hardMode = true;
+        System.out.print("What mode?(Easy=e,Normal=n,Hard=h: ");
+        String mode = SCANNER.nextLine().toLowerCase();
+        setMode(mode);
+        if (mode.equals("h")) {
+            hunter = new Hunter(name, 5);
         }
-        else if(hard.equals("test")){
-            hunter.changeGold(96);
+        else if(mode.equals("e")){
+            hunter = new Hunter(name, 20);
+
+        }
+        else if(mode.equals("test")){
+            hunter = new Hunter(name, 2000006);
             hunter.buyItem("water",1);
             hunter.buyItem("rope",1);
             hunter.buyItem("machete",1);
@@ -90,6 +99,14 @@ public class TreasureHunter {
             hunter.buyItem("boat",1);
             hunter.buyItem("boots",1);
 
+        }
+        else if(mode.equals("test")){
+            hunter = new Hunter(name, 10);
+
+        }
+
+        else{
+            hunter = new Hunter(name, 10);
         }
     }
 
@@ -99,20 +116,29 @@ public class TreasureHunter {
     private void enterTown() {
         searched = false;
         randItem();
-        double markdown = 0.5;
-        double toughness = 0.4;
-        if (hardMode) {
+        double markdown;
+        double toughness;
+
+        if (mode.equals("h")) {
             // in hard mode, you get less money back when you sell items
             markdown = 0.25;
 
             // and the town is "tougher"
             toughness = 0.75;
         }
+        else if(mode.equals("e")){
+            markdown=1;
+            toughness=0.10;
+        }
+        else{
+            markdown = 0.5;
+            toughness = 0.4;
+        }
 
         // note that we don't need to access the Shop object
         // outside of this method, so it isn't necessary to store it as an instance
         // variable; we can leave it as a local variable
-        Shop shop = new Shop(markdown);
+        Shop shop = new Shop(markdown, mode);
 
         // creating the new Town -- which we need to store as an instance
         // variable in this class, since we need to access the Town
