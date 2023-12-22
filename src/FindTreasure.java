@@ -3,7 +3,7 @@ public class FindTreasure {
 
     private boolean searched;
 
-    private String[] treasureList = new String[4];;
+    private String[] treasureList = new String[3];;
 
     private String item = "jim" ;
 
