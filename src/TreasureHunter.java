@@ -98,13 +98,13 @@ public class TreasureHunter {
 
         }
         else if(mode.equals("test")){
-            hunter = new Hunter(name, 2000006);
-            hunter.buyItem("water",1);
-            hunter.buyItem("rope",1);
-            hunter.buyItem("machete",1);
-            hunter.buyItem("horse",1);
-            hunter.buyItem("boat",1);
-            hunter.buyItem("boots",1);
+            hunter = new Hunter(name, 100);
+            hunter.buyItem("water",0);
+            hunter.buyItem("rope",0);
+            hunter.buyItem("machete",0);
+            hunter.buyItem("horse",0);
+            hunter.buyItem("boat",0);
+            hunter.buyItem("boots",0);
 
         }
         else if(mode.equals("test")){
