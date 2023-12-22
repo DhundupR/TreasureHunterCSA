@@ -13,6 +13,7 @@ public class Town {
     private boolean toughTown;
 
     private FindTreasure treasure;
+    private String mode;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -20,10 +21,11 @@ public class Town {
      * @param shop The town's shoppe.
      * @param toughness The surrounding terrain.
      */
-    public Town(Shop shop, double toughness, FindTreasure treasure) {
+    public Town(Shop shop, double toughness, FindTreasure treasure,String mode) {
         this.treasure = treasure;
         this.shop = shop;
         this.terrain = getNewTerrain();
+        this.mode=mode;
 
 
 
@@ -179,6 +181,9 @@ public class Town {
      * @return true if the item broke.
      */
     private boolean checkItemBreak() {
+        if (mode.equals("e")){
+            return false;
+        }
         double rand = Math.random();
         return (rand < 0.5);
     }

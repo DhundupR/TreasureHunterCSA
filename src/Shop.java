@@ -13,7 +13,8 @@ public class Shop {
     private static final int MACHETE_COST = 6;
     private static final int HORSE_COST = 12;
     private static final int BOAT_COST = 20;
-    private static final int BOOTS_COST = 20100;
+    private static final int BOOTS_COST = 10;
+    private static final int SHOVEL_COST = 15;
     private static final int SWORD_COST = 0;
 
 
@@ -93,6 +94,7 @@ public class Shop {
         str += "Horse: " + HORSE_COST + " gold\n";
         str += "Boat: " + BOAT_COST + " gold\n";
         str += "Boots: " + BOOTS_COST +" gold\n";
+        str += "Shovel: " + SHOVEL_COST +" gold\n";
         if(mode.equals("s")){
             str += "Sword: " + SWORD_COST +" gold\n";
         }
@@ -162,9 +164,11 @@ public class Shop {
             return BOAT_COST;
         } else if (item.equals("boots")) {
             return BOOTS_COST;
+        } else if (item.equals("shovel")) {
+            return SHOVEL_COST;
         } else if (item.equals("sword")) {
-            return SWORD_COST;
-        }else {
+        return SWORD_COST;
+        } else {
             return 0;
         }
     }
