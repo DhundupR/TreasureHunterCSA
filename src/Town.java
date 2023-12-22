@@ -115,7 +115,7 @@ public class Town {
         treasure.setSearchedTrue();
 
 
-        System.out.println("YOOOOO");
+
     }
 
     /**

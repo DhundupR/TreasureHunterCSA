@@ -10,6 +10,8 @@ public class Hunter {
     private String[] kit;
     private int gold;
 
+    private FindTreasure treasure;
+
     public int getGold(){
         return gold;
     }
@@ -21,8 +23,9 @@ public class Hunter {
      * @param hunterName The hunter's name.
      * @param startingGold The gold the hunter starts with.
      */
-    public Hunter(String hunterName, int startingGold) {
+    public Hunter(String hunterName, int startingGold, FindTreasure treasure) {
         this.hunterName = hunterName;
+        this.treasure = treasure;
         kit = new String[8]; // only 5 possible items can be stored in kit
         gold = startingGold;
     }
@@ -154,6 +157,12 @@ public class Hunter {
         if (!kitIsEmpty()) {
             str += " and " + getInventory();
         }
+        if (!treasure.treasureIsEmpty()) {
+            str += " and " + treasure.getInventory();
+        }
+
+
+
         return str;
     }
 
