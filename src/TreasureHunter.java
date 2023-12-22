@@ -107,10 +107,6 @@ public class TreasureHunter {
             hunter.buyItem("boots",0);
 
         }
-        else if(mode.equals("test")){
-            hunter = new Hunter(name, 10, treasure);
-
-        }
 
         else{
             hunter = new Hunter(name, 10, treasure);
