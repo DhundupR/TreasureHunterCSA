@@ -30,7 +30,12 @@ public class FindTreasure {
     public void setSearched(){
         this.searched = false;
     }
-    public void setGetItem(){this.getItem = false;}
+    public void setSearchedTrue(){
+        this.searched = true;
+    }
+    public void setGetItem(){
+        System.out.println("YWHWIADGHGHA");
+        this.getItem = false;}
 
     public void setItem(){
         randItem();
@@ -60,7 +65,7 @@ public class FindTreasure {
     public void addStuff(){
 
         if (searched == false){
-            if(!(item.equals("Dust"))){
+            if((!(item.equals("Dust")) && !(hasItemInTreasureList(item))) ){
                 addItem(item);}
         }
         for (int i = 0; i < treasureList.length; i++){
@@ -97,17 +102,30 @@ public class FindTreasure {
             return "You have already searched for treasure!";
         }
         else if (getItem == true){
-            searched = true;
+
             return "You already found this item previously";
 
         } else if( item.equals("Dust")){
-            searched = true;
+
             return "Your found useless dust!";
         } else{
-            searched = true;
+
             return "You found " + item;
 
         }
+    }
+
+    public String getInventory() {
+        String printableKit = "";
+        String space = " ";
+
+        for (String item : treasureList) {
+            if (item != null) {
+                printableKit += item + space;
+            }
+        }
+
+        return printableKit;
     }
 }
 
