@@ -34,7 +34,6 @@ public class FindTreasure {
         this.searched = true;
     }
     public void setGetItem(){
-        System.out.println("YWHWIADGHGHA");
         this.getItem = false;}
 
     public void setItem(){
@@ -68,22 +67,28 @@ public class FindTreasure {
             if((!(item.equals("Dust")) && !(hasItemInTreasureList(item))) ){
                 addItem(item);}
         }
-        for (int i = 0; i < treasureList.length; i++){
-            System.out.println(treasureList[i]);
-        }
 
 
     }
     private int emptyPositionInTreasurelist() {
         for (int i = 0; i < treasureList.length; i++) {
             if (treasureList[i] == (null)) {
-                System.out.println(i);
                 return i;
 
             }
         }
 
         return -1;
+    }
+
+    boolean treasureIsEmpty() {
+        for (String string : treasureList) {
+            if (string != null) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void addItem(String item) {
@@ -97,8 +102,10 @@ public class FindTreasure {
     public String enterTreasure(){
         getItem = hasItemInTreasureList(item);
 
-
-        if (searched == true){
+        if(isWin()){
+            return "WINNER WINNER CHICKEN DINNER";
+        }
+        else if (searched == true){
             return "You have already searched for treasure!";
         }
         else if (getItem == true){
@@ -113,6 +120,21 @@ public class FindTreasure {
             return "You found " + item;
 
         }
+    }
+
+    public boolean isWin(){
+        int x = 0;
+        for (int i = 0; i < treasureList.length; i++) {
+            if (!(treasureList[i] == null)){
+                x++;
+            }
+        }
+        if (x==3){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
     public String getInventory() {

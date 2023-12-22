@@ -91,14 +91,14 @@ public class TreasureHunter {
         String mode = SCANNER.nextLine().toLowerCase();
         setMode(mode);
         if (mode.equals("h")) {
-            hunter = new Hunter(name, 5);
+            hunter = new Hunter(name, 5, treasure);
         }
         else if(mode.equals("e")){
-            hunter = new Hunter(name, 20);
+            hunter = new Hunter(name, 20, treasure);
 
         }
         else if(mode.equals("test")){
-            hunter = new Hunter(name, 100);
+            hunter = new Hunter(name, 100,treasure);
             hunter.buyItem("water",0);
             hunter.buyItem("rope",0);
             hunter.buyItem("machete",0);
@@ -108,12 +108,12 @@ public class TreasureHunter {
 
         }
         else if(mode.equals("test")){
-            hunter = new Hunter(name, 10);
+            hunter = new Hunter(name, 10, treasure);
 
         }
 
         else{
-            hunter = new Hunter(name, 10);
+            hunter = new Hunter(name, 10, treasure);
         }
     }
 
@@ -175,6 +175,11 @@ public class TreasureHunter {
             System.out.println(currentTown.getLatestNews());
             if (hunter.getGold() < 0) {
                 System.out.println("GAME OVER");
+                break;
+            }
+
+            if (treasure.isWin()){
+                System.out.println("WINNER WINNER CHICKEN DINNER");
                 break;
             }
             System.out.println("***");
