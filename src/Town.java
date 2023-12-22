@@ -64,6 +64,9 @@ public class Town {
      */
     public boolean leaveTown() {
         boolean canLeaveTown = terrain.canCrossTerrain(hunter);
+        treasure.setSearched();
+        treasure.setGetItem();
+        treasure.randItem();
         if (canLeaveTown) {
             String item = terrain.getNeededItem();
             printMessage = "You used your " + item + " to cross the " + terrain.getTerrainName() + ".";
@@ -107,9 +110,10 @@ public class Town {
 
 
     public void enterTreasure() {
-
-        treasure.addStuff();
         printMessage =  treasure.enterTreasure();
+        treasure.addStuff();
+        treasure.setSearchedTrue();
+
 
         System.out.println("YOOOOO");
     }
