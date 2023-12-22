@@ -24,11 +24,15 @@ public class TreasureHunter {
     private boolean searched;
 
     private String[] treasureList;
+    private FindTreasure treasure;
+
+
 
     /**
      * Constructs the Treasure Hunter game.
      */
     public TreasureHunter() {
+
         // these will be initialized in the play method
         treasureList = new String[4];
         currentTown = null;
@@ -37,6 +41,9 @@ public class TreasureHunter {
         randItem();
         getItem = false;
         searched = false;
+        FindTreasure treasure = new FindTreasure();
+        this.treasure = treasure;
+
 
     }
     public void setMode(String newMode){
@@ -114,8 +121,8 @@ public class TreasureHunter {
      * Creates a new town and adds the Hunter to it.
      */
     private void enterTown() {
-        searched = false;
-        randItem();
+
+
         double markdown;
         double toughness;
 
@@ -140,16 +147,20 @@ public class TreasureHunter {
         // variable; we can leave it as a local variable
         Shop shop = new Shop(markdown, mode);
 
+
         // creating the new Town -- which we need to store as an instance
         // variable in this class, since we need to access the Town
         // object in other methods of this class
-        currentTown = new Town(shop, toughness);
+        currentTown = new Town(shop, toughness, treasure);
 
         // calling the hunterArrives method, which takes the Hunter
         // as a parameter; note this also could have been done in the
         // constructor for Town, but this illustrates another way to associate
         // an object with an object of a different class
         currentTown.hunterArrives(hunter);
+        treasure.setSearched();
+        treasure.setGetItem();
+        treasure.randItem();
     }
 
     /**
@@ -202,22 +213,8 @@ public class TreasureHunter {
         } else if (choice.equals("x")) {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
         } else if (choice.equals("h"))  {
+            currentTown.enterTreasure();
 
-            getItem = checkItems(item);
-            if (searched == true){
-                System.out.println("You have already searched for treasure!");
-            }
-            else if (getItem == true){
-                System.out.println("You already found this item previously");
-            } else if( item.equals("dust")){
-                System.out.println("Your found useless dust!");
-            } else{
-                System.out.println("You found " + item);
-                addItem(item);
-
-
-            }
-            searched = true;
 
 
 

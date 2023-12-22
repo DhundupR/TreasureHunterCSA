@@ -1,5 +1,3 @@
-import java.awt.*;
-
 /**
  * The Town Class is where it all happens.
  * The Town is designed to manage all the things a Hunter can do in town.
@@ -14,15 +12,20 @@ public class Town {
     private String printMessage;
     private boolean toughTown;
 
+    private FindTreasure treasure;
+
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
      *
      * @param shop The town's shoppe.
      * @param toughness The surrounding terrain.
      */
-    public Town(Shop shop, double toughness) {
+    public Town(Shop shop, double toughness, FindTreasure treasure) {
+        this.treasure = treasure;
         this.shop = shop;
         this.terrain = getNewTerrain();
+
+
 
         // the hunter gets set using the hunterArrives method, which
         // gets called from a client class
@@ -81,6 +84,8 @@ public class Town {
                 }
             }
 
+
+
             return true;
         }
 
@@ -97,6 +102,16 @@ public class Town {
     public void enterShop(String choice) {
         shop.enter(hunter, choice);
         printMessage = "You left the shop";
+    }
+
+
+
+    public void enterTreasure() {
+
+        treasure.addStuff();
+        printMessage =  treasure.enterTreasure();
+
+        System.out.println("YOOOOO");
     }
 
     /**
