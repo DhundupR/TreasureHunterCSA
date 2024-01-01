@@ -15,6 +15,8 @@ public class Town {
     private FindTreasure treasure;
     private String mode;
 
+    private DigTreasure dig;
+
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -27,6 +29,9 @@ public class Town {
         this.shop = shop;
         this.terrain = getNewTerrain();
         this.mode=mode;
+        DigTreasure dig = new DigTreasure(hunter);
+        this.dig = dig;
+
 
 
 
@@ -67,10 +72,14 @@ public class Town {
      */
     public boolean leaveTown() {
         boolean canLeaveTown = terrain.canCrossTerrain(hunter);
-        treasure.setSearched();
-        treasure.setGetItem();
-        treasure.randItem();
+
+
         if (canLeaveTown) {
+            treasure.setSearched();
+            treasure.setGetItem();
+            treasure.randItem();
+            dig.setHasDug();
+
             String item = terrain.getNeededItem();
             printMessage = "You used your " + item + " to cross the " + terrain.getTerrainName() + ".";
             if (checkItemBreak()) {
@@ -116,6 +125,14 @@ public class Town {
         printMessage =  treasure.enterTreasure();
         treasure.addStuff();
         treasure.setSearchedTrue();
+
+
+
+    }
+
+    public void digTreasure() {
+        printMessage =  dig.tryDig(hunter);
+
 
 
 
