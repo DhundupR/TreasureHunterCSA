@@ -158,7 +158,9 @@ public class Hunter {
             str += " and " + getInventory();
         }
         if (!treasure.treasureIsEmpty()) {
-            str += " and " + treasure.getInventory();
+            str += " \n Treasure: " + treasure.getInventory() ;
+        } else{
+            str += "\n Treasure: None ";
         }
 
 

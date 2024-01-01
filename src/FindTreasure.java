@@ -106,11 +106,11 @@ public class FindTreasure {
             return "WINNER WINNER CHICKEN DINNER";
         }
         else if (searched == true){
-            return "You have already searched for treasure!";
+            return "You have already searched for treasure!  ";
         }
         else if (getItem == true){
 
-            return "You already found this item previously";
+            return "You already found this item previously (" + item +")";
 
         } else if( item.equals("Dust")){
 
@@ -139,11 +139,11 @@ public class FindTreasure {
 
     public String getInventory() {
         String printableKit = "";
-        String space = " ";
+        String space = "a ";
 
         for (String item : treasureList) {
             if (item != null) {
-                printableKit += item + space;
+                printableKit += space + item + " ";
             }
         }
 
